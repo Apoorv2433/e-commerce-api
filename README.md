@@ -7,8 +7,11 @@ cd ecommerce-api
 npm install
 
 3. Environment variables
+
 PORT=3000
+
 MONGO_URI=mongodb://localhost:27017/ecommerce
+
 JWT_SECRET=supersecret
 
 4. Start the server
