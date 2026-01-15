@@ -22,4 +22,4 @@ For production:
 npm start
 
 Swagger UI is available at:
-http://localhost:<PORT>/api/docs
+http://localhost:"PORT"/api/docs
