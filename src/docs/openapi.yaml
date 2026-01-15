@@ -1,0 +1,181 @@
+openapi: 3.0.0
+info:
+  title: E-Commerce API
+  description: Simple e-commerce backend with Auth, Products, Cart, Orders
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:5000
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+        role:
+          type: string
+
+    Product:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        stockQuantity:
+          type: number
+        categoryId:
+          type: string
+
+paths:
+  /api/auth/register:
+    post:
+      summary: Register user
+      tags: [Auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: string
+      responses:
+        201:
+          description: User created
+
+  /api/auth/login:
+    post:
+      summary: Login user
+      tags: [Auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: JWT token returned
+
+  /api/products:
+    get:
+      summary: List products
+      tags: [Products]
+      responses:
+        200:
+          description: List of products
+
+    post:
+      summary: Create product (Admin only)
+      tags: [Products]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        201:
+          description: Product created
+
+  /api/cart/add:
+    post:
+      summary: Add product to cart
+      tags: [Cart]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [productId, quantity]
+              properties:
+                productId (objectId):
+                  type: string
+                quantity:
+                  type: number
+      responses:
+        200:
+          description: Cart updated
+  /api/cart:
+    get:
+      summary: Get current user's cart
+      description: Returns cart items with product details, quantity, subtotal per item, and total cart price
+      tags:
+        - Cart
+      security:
+        - BearerAuth: []
+      responses:
+        200:
+          description: Cart details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        product:
+                          type: object
+                          properties:
+                            _id:
+                              type: string
+                              example: "65f1a9e9b7c1a12abc123456"
+                            name:
+                              type: string
+                              example: "iPhone 15"
+                            price:
+                              type: number
+                              example: 80000
+                        quantity:
+                          type: number
+                          example: 2
+                        subtotal:
+                          type: number
+                          example: 160000
+                  totalPrice:
+                    type: number
+                    example: 160000
+        401:
+          description: Unauthorized (JWT missing or invalid)
+
+
+  /api/orders:
+    post:
+      summary: Place order
+      tags: [Orders]
+      security:
+        - BearerAuth: []
+      responses:
+        201:
+          description: Order placed
