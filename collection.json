@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "7f989212-4a96-4065-a493-857823e87a6e",
+		"name": "32co",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50434559",
+		"_collection_link": "https://apoorv-chandola243-504096.postman.co/workspace/Apoorv-Chandola's-Workspace~3f4c259e-0169-41a1-860b-e5afe7e3d498/collection/50434559-7f989212-4a96-4065-a493-857823e87a6e?action=share&source=collection_link&creator=50434559"
+	},
+	"item": [
+		{
+			"name": "user register admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"apoorv@gmail.com\",\r\n    \"password\": \"Hello\",\r\n    \"role\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user login admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"email\": \"apoorv@gmail.com\",\r\n   \"password\": \"Hello\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjhkODMyOTg4Mzc2ZDNmMzZjZGFlOSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2ODQ3OTMxNH0._9Broboek6eyZdMTddoBEP499bnxCTKQ1bUA1iFCTr8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"car1\",\r\n  \"description\": \"toy car\",\r\n  \"price\": 50,\r\n  \"stockQuantity\": 100,\r\n  \"categoryId\": \"toy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/product",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cart add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"apoorv@gmail.com\",\r\n    \"password\": \"Hello\",\r\n    \"role\": \"admin\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:5000/api/auth/add",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjhkYjQ3ODdlOGI4MWY3MGRkODNlZSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc2ODQ4MDk2OH0.C5Gc99N7X_olx_QIGgAeahOnjwjAgJXenqvUr6yZWQY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/cart",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "place order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjhkYjQ3ODdlOGI4MWY3MGRkODNlZSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc2ODQ4MDk2OH0.C5Gc99N7X_olx_QIGgAeahOnjwjAgJXenqvUr6yZWQY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
