@@ -24,3 +24,7 @@ Project Setup
 
     attaching collection.json for postman collection
 
+7. Architectural design
+
+    Each feature (auth, products, cart, orders) is organized as a separate module to keep the code easy to understand and scale.Business logic is handled in the service layer, while controllers stay thin and only manage request and response handling.Database access is done using Mongoose models
+
