@@ -21,5 +21,6 @@ Project Setup
 5. Swagger UI is available at: http://localhost:"PORT"/api/docs
 
 6. Api Endpoints
+
     attaching collection.json for postman collection
 
