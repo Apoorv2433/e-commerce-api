@@ -1,7 +1,7 @@
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
-// const errorMiddleware = require('./middlewares/error.middleware');
+const errorMiddleware = require('./middlewares/error.middleware');
 const notFound = require('./middlewares/notFound.middleware');
 const authRoutes = require('./modules/auth/auth.routes');
 const productRoutes = require('./modules/product/product.routes');
@@ -19,7 +19,7 @@ app.use('/api/orders', orderRoutes);
 
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(notFound); 
-// app.use(errorMiddleware);
+app.use(errorMiddleware);
 
 
 module.exports = app;
